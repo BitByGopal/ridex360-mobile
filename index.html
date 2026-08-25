@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>RideX360 — Smart Mobility. Safer Journeys. Complete Visibility.</title>
+<meta name="description" content="RideX360 — a mobile-first transportation, safety and mobility management platform for schools, colleges, companies, hospitals, factories, hotels and industrial campuses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,650&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<main class="app-shell" id="app">
+
+  <!-- ================= HOME ================= -->
+  <section class="screen active" id="screen-home" aria-label="Home">
+    <header class="glow-header">
+      <div class="header-top">
+        <button class="org-chip" id="orgChipBtn" aria-haspopup="dialog"><span class="dot"></span><span id="orgChipLabel">School</span> <span class="chev">▾</span></button>
+        <span class="role-chip" id="roleChip">Parent</span>
+      </div>
+      <div class="eyebrow" id="homeEyebrow">Good morning</div>
+      <h1 class="greet-title" id="homeGreet">Track your bus</h1>
+    </header>
+
+    <div class="content">
+      <div id="homeAlertBanner"></div>
+
+      <div class="vehicle-hero">
+        <div class="vh-top">
+          <div>
+            <div class="vh-name" id="vhName">Bus 12</div>
+            <div class="vh-sub" id="vhRoute">Route A · Main Road Line</div>
+          </div>
+          <span class="status-chip"><span class="dot"></span>On Route</span>
+        </div>
+        <div class="vh-eta"><span class="num" id="vhEta">7</span><span class="unit">min ETA · <span id="vhDist">1.2</span> km away</span></div>
+        <div class="vh-meta">
+          <span id="vhCountLabel">4 on board</span>
+          <span>📶 Live GPS</span>
+        </div>
+        <button class="vh-btn" id="goTrackBtn">Track Live</button>
+      </div>
+
+      <div class="status-strip">
+        <div class="status-mini">
+          <div class="sm-label">Route status</div>
+          <div class="sm-value" id="routeStatusValue">Confirmed</div>
+        </div>
+        <div class="status-mini">
+          <div class="sm-label">Safety status</div>
+          <div class="sm-value good" id="safetyStatusValue">Boarding verified</div>
+        </div>
+      </div>
+
+      <div class="sec-title"><h2>Quick actions</h2></div>
+      <div class="qa-grid">
+        <button class="qa-card" id="qaAbsence">
+          <div class="qa-ic">✋</div>
+          <div class="qa-t" id="qaAbsenceTitle">Mark absent</div>
+        </button>
+        <button class="qa-card" id="qaOrgSwitch">
+          <div class="qa-ic">🔀</div>
+          <div class="qa-t">Switch organization</div>
+        </button>
+        <button class="qa-card" id="qaTrackNav">
+          <div class="qa-ic">📍</div>
+          <div class="qa-t">Live tracking</div>
+        </button>
+        <button class="qa-card" id="qaTripsNav">
+          <div class="qa-ic">🗓️</div>
+          <div class="qa-t">Trip history</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRACK ================= -->
+  <section class="screen" id="screen-track" aria-label="Track">
+    <header class="glow-header">
+      <div class="eyebrow">Live tracking</div>
+      <h1 class="greet-title small" id="trackVehicle">Bus 12</h1>
+      <div class="route-toggle" id="routeToggle">
+        <button data-route="morning" class="active">Morning route</button>
+        <button data-route="evening">Evening route</button>
+      </div>
+    </header>
+    <div class="content">
+      <div class="map-box">
+        <div class="map-tex"></div>
+        <div class="route-line"><div class="route-fill" id="routeFill" style="width:32%"></div></div>
+        <div class="map-node pickup" style="left:14%"></div>
+        <div class="map-node dest" style="left:86%"></div>
+        <div class="veh-marker" id="vehMarker" style="left:32%">🚌</div>
+        <div class="map-cap"><span>Pickup point</span><span>Destination</span></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="v" id="tDist">1.2</div><div class="l">Km away</div></div>
+        <div class="stat-box"><div class="v" id="tEta">7</div><div class="l">Min ETA</div></div>
+        <div class="stat-box"><div class="v" id="tVeh">12</div><div class="l" id="tVehLabel">Bus</div></div>
+      </div>
+      <div class="sec-title"><h2>Trip progress</h2></div>
+      <div class="timeline" id="trackTimeline"></div>
+      <p class="fineprint">Position simulated for this prototype — production uses live GPS from the vehicle unit.</p>
+    </div>
+  </section>
+
+  <!-- ================= TRIPS ================= -->
+  <section class="screen" id="screen-trips" aria-label="Trips">
+    <header class="glow-header">
+      <div class="eyebrow">This week</div>
+      <h1 class="greet-title small">Trips &amp; attendance</h1>
+    </header>
+    <div class="content">
+      <div class="sec-title"><h2 id="absenceTitle">Not travelling today?</h2></div>
+      <div class="card absence-card">
+        <div>
+          <div class="info-t" id="absenceRowName">Aarav Mehta</div>
+          <div class="info-s" id="absenceRowSub">Mark absent for today</div>
+        </div>
+        <button class="toggle" id="absenceToggle" role="switch" aria-checked="false" aria-label="Mark absent"></button>
+      </div>
+      <div id="absenceBanner"></div>
+
+      <div class="sec-title"><h2>Recent trips</h2></div>
+      <div class="card trip-list" id="tripHistory"></div>
+    </div>
+  </section>
+
+  <!-- ================= ROUTE (driver mode) ================= -->
+  <section class="screen" id="screen-route" aria-label="Driver Route">
+    <header class="glow-header">
+      <div class="eyebrow" id="driverEyebrow">Morning route</div>
+      <h1 class="greet-title small" id="driverVehicle">Bus 12</h1>
+    </header>
+    <div class="content">
+      <div id="driverBanners"></div>
+      <div class="stat-row" style="margin-top:0;">
+        <div class="stat-box"><div class="v" id="dActive">4</div><div class="l">Active stops</div></div>
+        <div class="stat-box"><div class="v" id="dRemoved">1</div><div class="l">Removed</div></div>
+        <div class="stat-box"><div class="v" id="dEta">19</div><div class="l">Min ETA</div></div>
+      </div>
+      <div class="map-box compact">
+        <div class="map-tex"></div>
+        <div class="route-line"><div class="route-fill" id="dRouteFill" style="width:32%"></div></div>
+        <div class="map-node pickup" style="left:14%"></div>
+        <div class="map-node dest" style="left:86%"></div>
+        <div class="veh-marker" id="dVehMarker" style="left:32%">🚌</div>
+      </div>
+      <div class="sec-title"><h2 id="paxTitle">Students on this route</h2></div>
+      <div id="paxList"></div>
+    </div>
+  </section>
+
+  <!-- ================= PROFILE ================= -->
+  <section class="screen" id="screen-profile" aria-label="Profile">
+    <header class="glow-header">
+      <div class="eyebrow">Account</div>
+      <h1 class="greet-title small">Profile</h1>
+    </header>
+    <div class="content">
+      <div class="profile-head">
+        <div class="avatar-lg" id="avatarInitials">PG</div>
+        <div>
+          <div class="p-name" id="profileName">Prince Gopal</div>
+          <div class="p-role" id="profileRole">Parent · School</div>
+        </div>
+      </div>
+
+      <div class="sec-title"><h2>App mode</h2></div>
+      <div class="mode-switch">
+        <button id="modeBtnPassenger" class="active">Passenger</button>
+        <button id="modeBtnDriver">Driver</button>
+      </div>
+
+      <div class="sec-title"><h2>Organization</h2></div>
+      <button class="card info-card link" id="profileOrgBtn">
+        <div class="info-ic" id="profileOrgIcon">🏫</div>
+        <div class="info-text"><div class="info-t" id="profileOrgName">School</div><div class="info-s">Tap to switch industry</div></div>
+        <span class="chev">›</span>
+      </button>
+
+      <div class="sec-title"><h2>Settings</h2></div>
+      <div class="card">
+        <div class="settings-row">
+          <div><div class="info-t">Push notifications</div><div class="info-s">Arrival &amp; delay alerts</div></div>
+          <button class="toggle on" id="notifToggle" role="switch" aria-checked="true" aria-label="Push notifications"></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="info-t">Live location sharing</div><div class="info-s">Share ETA with family</div></div>
+          <button class="toggle on" id="shareToggle" role="switch" aria-checked="true" aria-label="Live location sharing"></button>
+        </div>
+        <div class="settings-row">
+          <div><div class="info-t">Language</div><div class="info-s">English</div></div>
+          <span class="chev-link">Change ›</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav" id="navPassenger" aria-label="Primary">
+    <button data-screen="home" class="active"><span class="ni">🏠</span><span class="nl">Home</span></button>
+    <button data-screen="track"><span class="ni">📍</span><span class="nl">Track</span></button>
+    <button data-screen="trips"><span class="ni">🗓️</span><span class="nl">Trips</span></button>
+    <button data-screen="profile"><span class="ni">👤</span><span class="nl">Profile</span></button>
+  </nav>
+  <nav class="bottom-nav" id="navDriver" aria-label="Driver navigation" style="display:none;">
+    <button data-screen="route" class="active"><span class="ni">🧭</span><span class="nl">Route</span></button>
+    <button id="navReplToggle"><span class="ni">🔁</span><span class="nl">Replace</span></button>
+    <button id="navTrafficToggle"><span class="ni">⚠️</span><span class="nl">Traffic</span></button>
+    <button data-screen="profile"><span class="ni">👤</span><span class="nl">Profile</span></button>
+  </nav>
+
+  <!-- Org picker sheet -->
+  <div class="sheet-backdrop" id="sheetBackdrop">
+    <div class="sheet" role="dialog" aria-label="Choose organization">
+      <div class="sheet-handle"></div>
+      <h3>Choose organization</h3>
+      <div id="orgOptions"></div>
+    </div>
+  </div>
+
+  <!-- Trip detail sheet -->
+  <div class="sheet-backdrop" id="tripSheetBackdrop">
+    <div class="sheet" role="dialog" aria-label="Trip detail">
+      <div class="sheet-handle"></div>
+      <h3 id="tripSheetTitle">Trip detail</h3>
+      <div id="tripSheetBody"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
